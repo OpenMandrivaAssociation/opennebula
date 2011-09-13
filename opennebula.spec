@@ -1,28 +1,10 @@
-#
-# spec file for package opennebula (Version 2.2.1)
-#
-# Copyright (c) 2010 SUSE LINUX Products GmbH, Nuernberg, Germany.
-#
-# All modifications and additions to the file contributed by third parties
-# remain the property of their copyright owners, unless otherwise agreed
-# upon. The license for this file, and modifications and additions to the
-# file, is the same license as for the pristine package itself (unless the
-# license for the pristine package is not an Open Source License, in which
-# case the license is the MIT License). An "Open Source License" is a
-# license that conforms to the Open Source Definition (Version 1.9)
-# published by the Open Source Initiative.
-
-# Please submit bugfixes or comments via http://bugs.opensuse.org/
-#
-
-
 Name:          opennebula
 Version:       2.2.1
 Release:       19.1
 License:       Apache License version 2.0
 Summary:       Elastic Utility Computing Architecture
 URL:           http://www.opennebula.org
-Group:         Productivity/Networking/System
+Group:         Networking/Remote access
 Source0:       %{name}-%{version}.tar.bz2
 Source1:       sunstone.init
 Patch:         openneb_64bitlib.patch
@@ -76,7 +58,7 @@ The %{name} devel package contains man pages and examples.
 
 %package sunstone
 Summary: Browser based UI to administer an OpenNebulaCloud
-Group:   Productivity/Networking/System
+Group:   Networking/Remote access
 Requires: %{name} = %{version}
 Requires: rubygem-json
 Requires: rubygem-sinatra
