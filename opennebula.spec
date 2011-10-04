@@ -1,11 +1,11 @@
 Name:          opennebula
-Version:       2.2.1
-Release:       19.1
+Version:       3.0.0
+Release:       %mkrel 1
 License:       Apache License version 2.0
 Summary:       Elastic Utility Computing Architecture
 URL:           http://www.opennebula.org
 Group:         Networking/Remote access
-Source0:       %{name}-%{version}.tar.bz2
+Source0:       %{name}-%{version}.tar.gz
 Source1:       sunstone.init
 Patch:         openneb_64bitlib.patch
 Patch1:        openneb_creatPIDdir.patch
@@ -69,11 +69,11 @@ sunstone if the web base UI to manage a deployed OpenNebula Cloud
 
 %prep
 %setup -q
-%patch
-%patch1
-%patch2
-%patch3
-%patch4
+#%patch
+#%patch1
+#%patch2
+#%patch3
+#%patch4
 
 %build
 scons sqlite_db=/usr xmlrpc=/usr
