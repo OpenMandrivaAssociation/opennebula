@@ -19,7 +19,7 @@ BuildRequires: libxml2-devel
 BuildRequires: libxmlrpc-c-devel    >= 1.06
 BuildRequires: libopenssl-devel     >= 0.9
 BuildRequires: openssh
-BuildRequires: pkg-config
+BuildRequires: pkgconfig
 BuildRequires: pwgen
 BuildRequires: ruby                 >= 1.8.6
 BuildRequires: scons                >= 0.97
