@@ -12,7 +12,7 @@ Patch1:        openneb_creatPIDdir.patch
 Patch2:        openneb_LSBhead.patch
 Patch3:        openneb_xmlrpcTest.patch
 Patch4:        openneb_constCorrectPool.patch
-BuildRequires: post-build-checks
+#BuildRequires: post-build-checks
 BuildRequires: gcc-c++
 BuildRequires: libcurl-devel
 BuildRequires: libxml2-devel    
