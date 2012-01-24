@@ -3,7 +3,7 @@
 
 Name:          opennebula
 Version:       3.2.0
-Release:       1
+Release:       2
 License:       Apache License version 2.0
 Summary:       Elastic Utility Computing Architecture
 URL:           http://www.opennebula.org
@@ -202,7 +202,6 @@ fi
 if [ ! -d /var/lock/one ]; then
   %{__mkdir} /var/lock/one
 fi
-systemctl enable one.service
 
 /bin/chown -R oneadmin:cloud /var/log/one
 /bin/chown -R oneadmin:cloud /var/lock/one
