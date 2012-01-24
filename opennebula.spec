@@ -35,7 +35,7 @@ Requires:      ruby                 >= 1.8.6
 Requires:      rubygem-libxml-ruby
 Requires:      openssh
 Requires:      pwgen
-Requires:      sqlite3              >= 3.5.2
+Requires:      sqlite3-tools        >= 3.5.2
 Requires:      rubygem-nokogiri
 Requires:      rubygem-sqlite3
 Requires:      xmlrpc-c             >= 1.06
@@ -62,7 +62,7 @@ The %{name} devel package contains man pages and examples.
 Summary: Manage multy tenancy
 Group:   System/Configuration/Networking
 Requires: %{name} = %{version}
-Requires: apache2
+Requires: apache-base
 Requires: rubygem-datamapper
 Requires: rubygem-dm-sqlite-adapter
 Requires: rubygem-json
@@ -202,5 +202,7 @@ fi
 if [ ! -d /var/lock/one ]; then
   %{__mkdir} /var/lock/one
 fi
+systemctl enable one.service
+
 /bin/chown -R oneadmin:cloud /var/log/one
 /bin/chown -R oneadmin:cloud /var/lock/one
