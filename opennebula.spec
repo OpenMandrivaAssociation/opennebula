@@ -7,7 +7,7 @@ Release:       1
 License:       Apache License version 2.0
 Summary:       Elastic Utility Computing Architecture
 URL:           http://www.opennebula.org
-Group:         Productivity/Networking/System
+Group:         System/Configuration/Networking
 Source0:       %{name}-%{version}.tar.gz
 Source1:       sunstone.init
 Source2:       onedsetup
@@ -18,6 +18,7 @@ Source6:       ozones.init
 Source7:       ozones.service
 Source8:       onetmpdirs
 Patch0:        openneb_64bitlib.patch
+Patch1:        nebula_linker.patch
 BuildRequires: gcc-c++
 BuildRequires: libcurl-devel
 BuildRequires: libxml2-devel    
@@ -51,7 +52,7 @@ to support each other.
 
 %package devel
 Summary:  Development files for %{name}
-Group:    Development/Libraries/Other
+Group:    Development/Ruby
 Requires: %{name} = %{version}
 
 %description devel
@@ -59,7 +60,7 @@ The %{name} devel package contains man pages and examples.
 
 %package zones
 Summary: Manage multy tenancy
-Group:   Productivity/Networking/System
+Group:   System/Configuration/Networking
 Requires: %{name} = %{version}
 Requires: apache2
 Requires: rubygem-datamapper
@@ -78,7 +79,7 @@ different administrative domains.
 
 %package sunstone
 Summary: Browser based UI to administer an OpenNebulaCloud
-Group:   Productivity/Networking/System
+Group:   System/Configuration/Networking
 Requires: %{name} = %{version}
 Requires: rubygem-json
 Requires: rubygem-sequel
@@ -91,6 +92,7 @@ sunstone if the web base UI to manage a deployed OpenNebula Cloud
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 scons sqlite_db=/usr xmlrpc=/usr
@@ -109,24 +111,24 @@ install -p -D -m 755 %{SOURCE8} %{buildroot}%{_sysconfdir}/tmpdirs.d/30_One
 
 %files
 %doc LICENSE NOTICE
-%config %{_sysconfdir}/one/acctd.conf
-%config %{_sysconfdir}/one/auth
-%config %{_sysconfdir}/one/cli
-%config %{_sysconfdir}/one/defaultrc
-%config %{_sysconfdir}/one/ec2query_templates
-%config %{_sysconfdir}/one/econe.conf
-%config %{_sysconfdir}/one/group.default
-%config %{_sysconfdir}/one/hm
-%config %{_sysconfdir}/one/im_ec2
-%config %{_sysconfdir}/one/occi*
-%config %{_sysconfdir}/one/oned.conf
-%config %{_sysconfdir}/one/tm_*
-%config %{_sysconfdir}/one/vmm_*
-%config %{_sysconfdir}/tmpdirs.d/30_One
+%config(noreplace) %{_sysconfdir}/one/acctd.conf
+%config(noreplace) %{_sysconfdir}/one/auth
+%config(noreplace) %{_sysconfdir}/one/cli
+%config(noreplace) %{_sysconfdir}/one/defaultrc
+%config(noreplace) %{_sysconfdir}/one/ec2query_templates
+%config(noreplace) %{_sysconfdir}/one/econe.conf
+%config(noreplace) %{_sysconfdir}/one/group.default
+%config(noreplace) %{_sysconfdir}/one/hm
+%config(noreplace) %{_sysconfdir}/one/im_ec2
+%config(noreplace) %{_sysconfdir}/one/occi*
+%config(noreplace) %{_sysconfdir}/one/oned.conf
+%config(noreplace) %{_sysconfdir}/one/tm_*
+%config(noreplace) %{_sysconfdir}/one/vmm_*
+%config(noreplace) %{_sysconfdir}/tmpdirs.d/30_One
 %dir	%{_sysconfdir}/one/image/
-%config %{_sysconfdir}/one/image/fs.conf
-%config %{_sysconfdir}/one/sched.conf
-%config %{_sysconfdir}/one/vmwarerc
+%config(noreplace) %{_sysconfdir}/one/image/fs.conf
+%config(noreplace) %{_sysconfdir}/one/sched.conf
+%config(noreplace) %{_sysconfdir}/one/vmwarerc
 
 %{_bindir}/econe*
 %{_bindir}/oc*
@@ -158,14 +160,14 @@ install -p -D -m 755 %{SOURCE8} %{buildroot}%{_sysconfdir}/tmpdirs.d/30_One
 %dir %{_datadir}/one/examples
 
 %files zones
-%config %{_sysconfdir}/one/ozones-server.conf
+%config(noreplace) %{_sysconfdir}/one/ozones-server.conf
 /usr/lib/one/ozones/*
 %{unitdir}/ozones.service
 %{_bindir}/ozones-server
 %dir /usr/lib/one/ozones
 
 %files sunstone
-%config %{_sysconfdir}/one/sunstone*
+%config(noreplace) %{_sysconfdir}/one/sunstone*
 /usr/lib/one/sunstone/*
 %{unitdir}/sunstone.service
 %{_bindir}/sunstone-server
