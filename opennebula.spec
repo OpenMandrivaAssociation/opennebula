@@ -2,7 +2,7 @@
 
 
 Name:          opennebula
-Version:       3.2.1
+Version:       3.3.0
 Release:       1
 License:       Apache License version 2.0
 Summary:       Elastic Utility Computing Architecture
@@ -161,14 +161,14 @@ install -p -D -m 755 %{SOURCE8} %{buildroot}%{_sysconfdir}/tmpdirs.d/30_One
 
 %files zones
 %config(noreplace) %{_sysconfdir}/one/ozones-server.conf
-/usr/lib/one/ozones/*
+%{_prefix}/lib/one/ozones/*
 %{unitdir}/ozones.service
 %{_bindir}/ozones-server
 %dir /usr/lib/one/ozones
 
 %files sunstone
 %config(noreplace) %{_sysconfdir}/one/sunstone*
-/usr/lib/one/sunstone/*
+%{_prefix}/lib/one/sunstone/*
 %{unitdir}/sunstone.service
 %{_bindir}/sunstone-server
 %dir /usr/lib/one/sunstone
