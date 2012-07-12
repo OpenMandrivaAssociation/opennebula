@@ -96,7 +96,8 @@ sunstone if the web base UI to manage a deployed OpenNebula Cloud
 %patch1 -p1
 
 %build
-scons sqlite_db=/usr xmlrpc=/usr
+#scons sqlite_db=/usr xmlrpc=/usr
+scons
 
 %install
 export DESTDIR=%{buildroot}
@@ -112,7 +113,7 @@ install -p -D -m 755 %{SOURCE8} %{buildroot}%{_sysconfdir}/tmpdirs.d/30_One
 
 %files
 %doc LICENSE NOTICE
-%config(noreplace) %{_sysconfdir}/one/acctd.conf
+#% config(noreplace) %{_sysconfdir}/one/acctd.conf
 %config(noreplace) %{_sysconfdir}/one/auth
 %config(noreplace) %{_sysconfdir}/one/cli
 %config(noreplace) %{_sysconfdir}/one/defaultrc
@@ -123,11 +124,11 @@ install -p -D -m 755 %{SOURCE8} %{buildroot}%{_sysconfdir}/tmpdirs.d/30_One
 %config(noreplace) %{_sysconfdir}/one/im_ec2
 %config(noreplace) %{_sysconfdir}/one/occi*
 %config(noreplace) %{_sysconfdir}/one/oned.conf
-%config(noreplace) %{_sysconfdir}/one/tm_*
+#% config(noreplace) %{_sysconfdir}/one/tm_*
 %config(noreplace) %{_sysconfdir}/one/vmm_*
 %config(noreplace) %{_sysconfdir}/tmpdirs.d/30_One
-%dir	%{_sysconfdir}/one/image/
-%config(noreplace) %{_sysconfdir}/one/image/fs.conf
+#%dir	%{_sysconfdir}/one/image/
+#% config(noreplace) %{_sysconfdir}/one/image/fs.conf
 %config(noreplace) %{_sysconfdir}/one/sched.conf
 %config(noreplace) %{_sysconfdir}/one/vmwarerc
 
@@ -139,7 +140,7 @@ install -p -D -m 755 %{SOURCE8} %{buildroot}%{_sysconfdir}/tmpdirs.d/30_One
 /usr/lib/one/mads/*
 /usr/lib/one/sh/scripts_common.sh
 /usr/lib/one/ruby/*
-/usr/lib/one/tm_commands/*
+#/usr/lib/one/tm_commands/*
 /var/lib/one/*
 %{_sbindir}/onedsetup
 %{unitdir}/one.service
@@ -149,7 +150,7 @@ install -p -D -m 755 %{SOURCE8} %{buildroot}%{_sysconfdir}/tmpdirs.d/30_One
 %dir /usr/lib/one/mads
 %dir /usr/lib/one/ruby
 %dir /usr/lib/one/sh
-%dir /usr/lib/one/tm_commands
+#%dir /usr/lib/one/tm_commands
 %dir /var/lib/one
 
 %files devel
