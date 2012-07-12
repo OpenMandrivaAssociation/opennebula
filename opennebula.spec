@@ -2,7 +2,7 @@
 
 
 Name:          opennebula
-Version:       3.3.0
+Version:       3.6.0
 Release:       1
 License:       Apache License version 2.0
 Summary:       Elastic Utility Computing Architecture
@@ -21,6 +21,7 @@ Patch0:        openneb_64bitlib.patch
 Patch1:        nebula_linker.patch
 BuildRequires: gcc-c++
 BuildRequires: libcurl-devel
+BuildRequires: pkgconfig(zlib)
 BuildRequires: libxml2-devel    
 BuildRequires: libxmlrpc-c-devel    >= 1.06
 BuildRequires: libopenssl-devel     >= 0.9
