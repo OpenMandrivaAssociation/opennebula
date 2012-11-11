@@ -1,0 +1,10 @@
+sources:
+  "onedsetup:"	b46bbde9748ce0371290c0130fb50094c15a5257
+  "one_scheduler.service:"	7c5e380ea839c960a2b37d9100a4ea5b9d3b8578
+  "one.service:"	53db4569f41a6473c59533360749a7054aeef97d
+  "onetmpdirs:"	d67321cab79ef997456b8f41094be4e2a2b56200
+  "opennebula-3.6.0.tar.gz:"	8f4f5d60cda3b64618328a09647bd352d7d36992
+  "ozones.init:"	592ad314e74a90cb2a65cd5b86fefd0595d77909
+  "ozones.service:"	bf6800f84033ec06126bd3b66ab85b9d8360d72e
+  "sunstone.init:"	2ffcf34cbef9193b13bfc6411390f3c48aa896cf
+  "sunstone.service:"	8345e96d18cdc99a83c846a8183996b346b657bd
