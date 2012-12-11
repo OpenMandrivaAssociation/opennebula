@@ -1,45 +1,39 @@
-%define	unitdir /lib/systemd/system/
-
-
-Name:          opennebula
-Version:       3.6.0
-Release:       1
-License:       Apache License version 2.0
-Summary:       Elastic Utility Computing Architecture
-URL:           http://www.opennebula.org
-Group:         System/Configuration/Networking
-Source0:       %{name}-%{version}.tar.gz
-Source1:       sunstone.init
-Source2:       onedsetup
-Source3:       one.service
-Source4:       one_scheduler.service
-Source5:       sunstone.service
-Source6:       ozones.init
-Source7:       ozones.service
-Source8:       onetmpdirs
-Patch0:        openneb_64bitlib.patch
-Patch1:        nebula_linker.patch
-BuildRequires: gcc-c++
-BuildRequires: libcurl-devel
-BuildRequires: pkgconfig(zlib)
-BuildRequires: libxml2-devel    
-BuildRequires: libxmlrpc-c-devel    >= 1.06
-BuildRequires: libopenssl-devel     >= 0.9
-BuildRequires: openssh
-BuildRequires: pwgen
-BuildRequires: ruby                 >= 1.8.6
-BuildRequires: scons                >= 0.97
-BuildRequires: sqlite3-devel        >= 3.5.2
-BuildRequires: xmlrpc-c             >= 1.06
-Requires:      openssl              >= 0.9
-Requires:      ruby                 >= 1.8.6
-Requires:      rubygem-libxml-ruby
-Requires:      openssh
-Requires:      pwgen
-Requires:      sqlite3-tools        >= 3.5.2
-Requires:      rubygem-nokogiri
-Requires:      rubygem-sqlite3
-Requires:      xmlrpc-c             >= 1.06
+Name:		opennebula
+Version:	3.8.0
+Release:	3
+License:	Apache License version 2.0
+Summary:	Elastic Utility Computing Architecture
+URL:		http://www.opennebula.org
+Group:		System/Configuration/Networking
+Source0:	%{name}-%{version}.tar.gz
+Source2:	onedsetup
+Source3:	one.service
+Source4:	one_scheduler.service
+Source5:	sunstone.service
+Source7:	ozones.service
+Source8:	onetmpdirs
+Patch0:		openneb_creatPIDdir.patch
+BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig(libcurl)
+BuildRequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(libxml-2.0)
+BuildRequires:	pkgconfig(xmlrpc)
+BuildRequires:	pkgconfig(openssl)
+BuildRequires:	openssh
+BuildRequires:	pwgen
+BuildRequires:	ruby                 >= 1.8.6
+BuildRequires:	scons                >= 0.97
+BuildRequires:	pkgconfig(sqlite3)
+BuildRequires:	xmlrpc-c             >= 1.06
+Requires:	openssl              >= 0.9
+Requires:	ruby                 >= 1.8.6
+Requires:	rubygem-libxml-ruby
+Requires:	openssh
+Requires:	pwgen
+Requires:	sqlite3-tools        >= 3.5.2
+Requires:	rubygem-nokogiri
+Requires:	rubygem-sqlite3
+Requires:	xmlrpc-c             >= 1.06
 
 %description
 OpenNebula.org is an open-source project aimed at building the industry
@@ -51,49 +45,48 @@ OpenNebula.org community has thousands of users, contributors, and supporters,
 who interact through various online email lists, blogs and innovative projects
 to support each other. 
 
-%package devel
-Summary:  Development files for %{name}
-Group:    Development/Ruby
-Requires: %{name} = %{version}
+%package	devel
+Summary:	Development files for %{name}
+Group:		Development/Ruby
+Requires:	%{name} = %{version}
 
-%description devel
+%description	devel
 The %{name} devel package contains man pages and examples.
 
-%package zones
-Summary: Manage multy tenancy
-Group:   System/Configuration/Networking
-Requires: %{name} = %{version}
-Requires: apache-base
-Requires: rubygem-datamapper
-Requires: rubygem-dm-sqlite-adapter
-Requires: rubygem-json
-Requires: rubygem-openssl-nonblock
-Requires: rubygem-rack
-Requires: rubygem-sequel
-Requires: rubygem-sinatra
-Requires: rubygem-thin
+%package	zones
+Summary:	Manage multy tenancy
+Group:		System/Configuration/Networking
+Requires:	%{name} = %{version}
+Requires:	apache-base
+Requires:	rubygem-datamapper
+Requires:	rubygem-dm-sqlite-adapter
+Requires:	rubygem-json
+Requires:	rubygem-openssl-nonblock
+Requires:	rubygem-rack
+Requires:	rubygem-sequel
+Requires:	rubygem-sinatra
+Requires:	rubygem-thin
 
-%description zones
+%description	zones
 The OpenNebula Zones (oZones) component allows for the centralized management
 of multiple instances of OpenNebula (zones), managing in turn potentially
 different administrative domains.
 
-%package sunstone
-Summary: Browser based UI to administer an OpenNebulaCloud
-Group:   System/Configuration/Networking
-Requires: %{name} = %{version}
-Requires: rubygem-json
-Requires: rubygem-sequel
-Requires: rubygem-sinatra
-Requires: rubygem-thin
+%package	sunstone
+Summary:	Browser based UI to administer an OpenNebulaCloud
+Group:		System/Configuration/Networking
+Requires:	%{name} = %{version}
+Requires:	rubygem-json
+Requires:	rubygem-sequel
+Requires:	rubygem-sinatra
+Requires:	rubygem-thin
 
-%description sunstone
+%description	sunstone
 sunstone if the web base UI to manage a deployed OpenNebula Cloud
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+%patch0 -p0
 
 %build
 #scons sqlite_db=/usr xmlrpc=/usr
@@ -105,15 +98,14 @@ export DESTDIR=%{buildroot}
 ./install.sh
 
 install -p -D -m 755 %{SOURCE2} %{buildroot}%{_sbindir}/onedsetup
-install -p -D -m 755 %{SOURCE3} %{buildroot}%{unitdir}/one.service
-install -p -D -m 755 %{SOURCE4} %{buildroot}%{unitdir}/one_scheduler.service
-install -p -D -m 755 %{SOURCE5} %{buildroot}%{unitdir}/sunstone.service
-install -p -D -m 755 %{SOURCE5} %{buildroot}%{unitdir}/ozones.service
+install -p -D -m 755 %{SOURCE3} %{buildroot}%{_unitdir}/one.service
+install -p -D -m 755 %{SOURCE4} %{buildroot}%{_unitdir}/one_scheduler.service
+install -p -D -m 755 %{SOURCE5} %{buildroot}%{_unitdir}/sunstone.service
+install -p -D -m 755 %{SOURCE7} %{buildroot}%{_unitdir}/ozones.service
 install -p -D -m 755 %{SOURCE8} %{buildroot}%{_sysconfdir}/tmpdirs.d/30_One
 
 %files
 %doc LICENSE NOTICE
-#% config(noreplace) %{_sysconfdir}/one/acctd.conf
 %config(noreplace) %{_sysconfdir}/one/auth
 %config(noreplace) %{_sysconfdir}/one/cli
 %config(noreplace) %{_sysconfdir}/one/defaultrc
@@ -124,11 +116,8 @@ install -p -D -m 755 %{SOURCE8} %{buildroot}%{_sysconfdir}/tmpdirs.d/30_One
 %config(noreplace) %{_sysconfdir}/one/im_ec2
 %config(noreplace) %{_sysconfdir}/one/occi*
 %config(noreplace) %{_sysconfdir}/one/oned.conf
-#% config(noreplace) %{_sysconfdir}/one/tm_*
 %config(noreplace) %{_sysconfdir}/one/vmm_*
 %config(noreplace) %{_sysconfdir}/tmpdirs.d/30_One
-#%dir	%{_sysconfdir}/one/image/
-#% config(noreplace) %{_sysconfdir}/one/image/fs.conf
 %config(noreplace) %{_sysconfdir}/one/sched.conf
 %config(noreplace) %{_sysconfdir}/one/vmwarerc
 
@@ -143,14 +132,13 @@ install -p -D -m 755 %{SOURCE8} %{buildroot}%{_sysconfdir}/tmpdirs.d/30_One
 #/usr/lib/one/tm_commands/*
 /var/lib/one/*
 %{_sbindir}/onedsetup
-%{unitdir}/one.service
-%{unitdir}/one_scheduler.service
+%{_unitdir}/one.service
+%{_unitdir}/one_scheduler.service
 %dir %{_sysconfdir}/one
 %dir /usr/lib/one
 %dir /usr/lib/one/mads
 %dir /usr/lib/one/ruby
 %dir /usr/lib/one/sh
-#%dir /usr/lib/one/tm_commands
 %dir /var/lib/one
 
 %files devel
@@ -164,14 +152,14 @@ install -p -D -m 755 %{SOURCE8} %{buildroot}%{_sysconfdir}/tmpdirs.d/30_One
 %files zones
 %config(noreplace) %{_sysconfdir}/one/ozones-server.conf
 %{_prefix}/lib/one/ozones/*
-%{unitdir}/ozones.service
+%{_unitdir}/ozones.service
 %{_bindir}/ozones-server
 %dir /usr/lib/one/ozones
 
 %files sunstone
 %config(noreplace) %{_sysconfdir}/one/sunstone*
 %{_prefix}/lib/one/sunstone/*
-%{unitdir}/sunstone.service
+%{_unitdir}/sunstone.service
 %{_bindir}/sunstone-server
 %dir /usr/lib/one/sunstone
 
