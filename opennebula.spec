@@ -1,6 +1,6 @@
 Name:		opennebula
 Version:	3.8.0
-Release:	3
+Release:	4
 License:	Apache License version 2.0
 Summary:	Elastic Utility Computing Architecture
 URL:		http://www.opennebula.org
