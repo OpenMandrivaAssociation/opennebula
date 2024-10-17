@@ -3,7 +3,7 @@ Version:	3.8.0
 Release:	4
 License:	Apache License version 2.0
 Summary:	Elastic Utility Computing Architecture
-URL:		http://www.opennebula.org
+URL:		https://www.opennebula.org
 Group:		System/Configuration/Networking
 Source0:	%{name}-%{version}.tar.gz
 Source2:	onedsetup
